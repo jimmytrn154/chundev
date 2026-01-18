@@ -8,6 +8,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Space+Grotesk:wght@700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
             --bg-color: #0a0a12;
@@ -342,7 +344,7 @@
             margin-bottom: 8px;
         }
 
-        /* Projects Section */
+        /* --- PROJECTS SECTION --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -454,32 +456,93 @@
             transform: translateX(5px);
         }
 
-        /* Skills Section */
-        .skills-grid {
+        /* --- NEW SKILLS SECTION (CATEGORIZED) --- */
+        .skills-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
 
-        .skill-card {
+        .skill-category {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 20px;
-            text-align: center;
-            border-radius: 12px;
-            transition: all 0.3s;
+            padding: 25px;
+            border-radius: 16px;
+            backdrop-filter: var(--glass-blur);
+            transition: all 0.3s ease;
         }
 
-        .skill-card:hover {
-            background: rgba(255, 255, 255, 0.05);
+        .skill-category:hover {
             border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
         }
 
-        .skill-card h3 {
-            font-size: 1rem;
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .skill-header i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-right: 15px;
+        }
+
+        .skill-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Skill Row */
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            width: 30%;
+            font-size: 0.95rem;
+            color: var(--text-primary);
             font-weight: 400;
+        }
+
+        /* Segmented Progress Bar */
+        .skill-track {
+            flex-grow: 1;
+            display: flex;
+            gap: 4px; /* Space between segments */
+            margin: 0 15px;
+            height: 12px;
+        }
+
+        .skill-segment {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .skill-segment.filled {
+            background: var(--accent);
+            box-shadow: 0 0 5px var(--accent-glow);
+        }
+
+        .skill-percent {
+            width: 15%;
+            text-align: right;
+            font-family: 'Space Grotesk', monospace;
+            color: var(--accent);
+            font-size: 0.9rem;
         }
 
         /* Education Grid */
@@ -510,58 +573,25 @@
             color: var(--accent);
         }
 
-        /* --- MOBILE RESPONSIVE TWEAKS --- */
+        /* --- RESPONSIVE ADJUSTMENTS --- */
         @media screen and (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            /* --- TIMELINE MOBILE FIXES --- */
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .skills-wrapper { grid-template-columns: 1fr; } /* Stack skills on mobile */
             
-            /* 1. Move the central line to the far left */
-            .timeline::after {
-                left: 30px; 
+            /* Timeline Mobile Fixes */
+            .timeline::after { left: 30px; }
+            .timeline-item { 
+                width: 100%; 
+                padding-left: 65px; 
+                padding-right: 20px; 
+                margin-bottom: 20px; 
             }
-
-            /* 2. Standardize all items to stack vertically */
-            .timeline-item {
-                width: 100%;
-                padding-left: 65px; /* Space for line and dot */
-                padding-right: 20px; /* Right padding for comfort */
-                margin-bottom: 20px;
-            }
-
-            /* 3. Force all items to start at left: 0 (override alternating logic) */
-            .timeline-item.right {
-                left: 0;
-            }
-
-            /* 4. Align text to left for all items */
-            .timeline-item.left, 
-            .timeline-item.right {
-                text-align: left;
-            }
-
-            .timeline-item.left .content-card,
-            .timeline-item.right .content-card {
-                text-align: left;
-            }
-
-            /* 5. Align dots consistently on the left line */
-            /* Line is at 30px. Dot width is 16px. Center alignment: 30 + 1 (line center) - 8 (half dot) = 23px */
-            .timeline-item.left::after,
-            .timeline-item.right::after {
-                left: 23px;
-                right: auto; /* Important: remove right positioning */
-            }
+            .timeline-item.right { left: 0; }
+            .timeline-item.left, .timeline-item.right { text-align: left; }
+            .timeline-item.left .content-card, .timeline-item.right .content-card { text-align: left; }
+            .timeline-item.left::after, .timeline-item.right::after { left: 23px; right: auto; }
         }
     </style>
 </head>
@@ -663,7 +693,6 @@
         </div>
     </section>
 
-
     <section id="projects">
         <div class="container">
             <h2 class="animate-on-scroll">Featured Projects</h2>
@@ -717,8 +746,7 @@
                         <h3>Naruto Battle Game</h3>
                         <p>An interactive computer vision game where players use physical hand signs to battle without
                             controllers. The system utilizes real-time object detection and style transfer to render
-                            avatars and cast abilities
-                            based on player gestures.</p>
+                            avatars and cast abilities based on player gestures.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">YOLOv11</span>
                             <span class="tech-tag">FastAPI</span>
@@ -736,32 +764,149 @@
 
     <section id="skills">
         <div class="container">
-            <h2 class="animate-on-scroll">Technical Stack</h2>
-            <div class="skills-grid animate-on-scroll">
-                <div class="skill-card">
-                    <h3>Computer Vision</h3>
+            <h2 class="animate-on-scroll">Technical Expertise</h2>
+            <div class="skills-wrapper">
+
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Programming</h3>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Java</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">70%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">C / C++</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">70%</span>
+                    </div>
+                     <div class="skill-item">
+                        <span class="skill-name">SQL</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <h3>Python</h3>
+
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI & Data Science</h3>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">PyTorch</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">OpenCV</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Pandas</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Langchain</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">70%</span>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <h3>ReactJS</h3>
+
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-header">
+                        <i class="fas fa-desktop"></i>
+                        <h3>Front-End</h3>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">ReactJS</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Tailwind</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">HTML/CSS</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">90%</span>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <h3>Tailwind CSS</h3>
+
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-header">
+                        <i class="fas fa-server"></i>
+                        <h3>Back-End & Infra</h3>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Flask/FastAPI</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Node.js</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segmen filledt"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Git / GitHub</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Docker</span>
+                        <div class="skill-track">
+                            <div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment filled"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+                        </div>
+                        <span class="skill-percent">50%</span>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <h3>Flask</h3>
-                </div>
-                <div class="skill-card">
-                    <h3>Data Processing</h3>
-                </div>
-                <div class="skill-card">
-                    <h3>Software Infrastructure</h3>
-                </div>
-                <div class="skill-card">
-                    <h3>NLP</h3>
-                </div>
+
             </div>
         </div>
     </section>

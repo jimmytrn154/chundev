@@ -158,25 +158,17 @@
             text-align: center;
             flex-direction: column;
             padding-top: 60px;
-            /* Offset for nav */
         }
 
-        /* Avatar Styling */
         .avatar-wrapper {
             width: 180px;
             height: 180px;
             margin: 0 auto 35px;
-            /* Centered with bottom spacing */
             position: relative;
             padding: 4px;
-            /* Space for gradient border */
             border-radius: 50%;
-
-            /* Extraordinary Gradient Border & Glow */
             background: linear-gradient(135deg, var(--accent), #0a0a12 50%, var(--accent));
             box-shadow: 0 0 40px var(--accent-glow);
-
-            /* Floating Animation */
             animation: floatAvatar 6s ease-in-out infinite;
         }
 
@@ -186,22 +178,13 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--bg-color);
-            /* Separation from glow */
             background-color: #1a1a24;
-            /* Fallback color */
             display: block;
         }
 
         @keyframes floatAvatar {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .hero h1 {
@@ -319,8 +302,6 @@
             text-align: right;
         }
 
-        /* Text align match */
-
         .content-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
@@ -359,6 +340,118 @@
 
         .content-card li {
             margin-bottom: 8px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: var(--glass-blur);
+            transition: transform 0.4s, border-color 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 20px;
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-link {
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .btn-link:hover {
+            color: var(--accent);
+        }
+
+        .btn-link::after {
+            content: '→';
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-link:hover::after {
+            transform: translateX(5px);
         }
 
         /* Skills Section */
@@ -417,7 +510,7 @@
             color: var(--accent);
         }
 
-        /* Mobile Responsive */
+        /* --- MOBILE RESPONSIVE TWEAKS --- */
         @media screen and (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
@@ -427,161 +520,56 @@
                 display: none;
             }
 
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .timeline-item.left {
-                text-align: left;
-            }
-
-            .timeline-item.left .content-card {
-                text-align: left;
-            }
-
-            /* Reset alignment */
-            .timeline-item.left::after,
-            .timeline-item.right::after {
-                left: 23px;
-            }
-
             .grid-2 {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* --- PROJECT SECTION STYLES --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
+            /* --- TIMELINE MOBILE FIXES --- */
+            
+            /* 1. Move the central line to the far left */
+            .timeline::after {
+                left: 30px; 
+            }
 
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            overflow: hidden;
-            /* Keeps image inside rounded corners */
-            backdrop-filter: var(--glass-blur);
-            transition: transform 0.4s, border-color 0.4s;
-            display: flex;
-            flex-direction: column;
-        }
+            /* 2. Standardize all items to stack vertically */
+            .timeline-item {
+                width: 100%;
+                padding-left: 65px; /* Space for line and dot */
+                padding-right: 20px; /* Right padding for comfort */
+                margin-bottom: 20px;
+            }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
+            /* 3. Force all items to start at left: 0 (override alternating logic) */
+            .timeline-item.right {
+                left: 0;
+            }
 
-        /* Placeholder for Project Image */
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            /* Placeholder gradient */
-            position: relative;
-            overflow: hidden;
-        }
+            /* 4. Align text to left for all items */
+            .timeline-item.left, 
+            .timeline-item.right {
+                text-align: left;
+            }
 
-        /* Optional: If you use real images later, this handles them */
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
+            .timeline-item.left .content-card,
+            .timeline-item.right .content-card {
+                text-align: left;
+            }
 
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 25px;
-            flex-grow: 1;
-            /* Pushes buttons to bottom */
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-content h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .project-content p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .tech-tag {
-            font-size: 0.8rem;
-            padding: 5px 12px;
-            background: rgba(0, 242, 255, 0.1);
-            color: var(--accent);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            border-radius: 20px;
-            font-family: 'Space Grotesk', monospace;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn-link {
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s;
-        }
-
-        .btn-link:hover {
-            color: var(--accent);
-        }
-
-        /* Icon arrow for links */
-        .btn-link::after {
-            content: '→';
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-
-        .btn-link:hover::after {
-            transform: translateX(5px);
+            /* 5. Align dots consistently on the left line */
+            /* Line is at 30px. Dot width is 16px. Center alignment: 30 + 1 (line center) - 8 (half dot) = 23px */
+            .timeline-item.left::after,
+            .timeline-item.right::after {
+                left: 23px;
+                right: auto; /* Important: remove right positioning */
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Dynamic Background -->
     <canvas id="canvas-container"></canvas>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">Chuong<span>.Dev</span></div>
         <div class="nav-links">
@@ -593,15 +581,11 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero" id="about">
         <div class="container">
-            <!-- NEW AVATAR CONTAINER -->
             <div class="avatar-wrapper">
-                <!-- Replace the src below with your image file -->
                 <img src="chun.jpg" alt="Chương Trần Anh" class="avatar-img">
             </div>
-            <!-- END AVATAR CONTAINER -->
 
             <h1>Chương Trần Anh</h1>
             <div class="hero-subtitle" id="typing-text"></div>
@@ -611,7 +595,6 @@
         </div>
     </section>
 
-    <!-- Experience (Timeline) -->
     <section id="experience">
         <div class="container">
             <h2 class="animate-on-scroll">Professional Journey</h2>
@@ -751,7 +734,6 @@
         </div>
     </section>
 
-    <!-- Skills -->
     <section id="skills">
         <div class="container">
             <h2 class="animate-on-scroll">Technical Stack</h2>
@@ -784,7 +766,6 @@
         </div>
     </section>
 
-    <!-- Education & Honors -->
     <section id="education">
         <div class="container">
             <h2 class="animate-on-scroll">Education & Honors</h2>
@@ -806,7 +787,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact">
         <div class="container">
             <h2>Let's Connect</h2>

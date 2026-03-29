@@ -575,7 +575,22 @@
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
         @media screen and (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
+            nav { padding: 15px 25px; }
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding-top: 120px;
+                padding-bottom: 50px;
+                justify-content: center;
+            }
+            .avatar-wrapper {
+                width: 140px;
+                height: 140px;
+                margin-bottom: 25px;
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .hero p { padding: 0 10px; }
             .nav-links { display: none; }
             .grid-2 { grid-template-columns: 1fr; }
             .skills-wrapper { grid-template-columns: 1fr; } /* Stack skills on mobile */
@@ -636,8 +651,8 @@
                         <h3 class="role">Undergraduate Research Assistant</h3>
                         <div class="company">VinUni-Illinois Smart Health Center (VISHC)</div>
                         <ul>
-                            <li>Spearheading research in AI applications and data systems.</li>
-                            <li>Developing smart health solutions using advanced data processing.</li>
+                            <li>Contributing in research of AI applications in molecular breast cancer classification</li>
+                            <li>Developing end-to-end production-ready product for hospital</li>
                         </ul>
                     </div>
                 </div>
@@ -921,13 +936,13 @@
                     <div class="company">VinUniversity</div>
                     <p style="color: #ccc; margin-top: 10px;">Focusing on AI, Big Data, and System Development.</p>
                 </div>
-                <div class="content-card animate-on-scroll">
+                <!-- <div class="content-card animate-on-scroll">
                     <span class="date">2022 - 2023</span>
                     <h3 class="role">Computer Science Star Award</h3>
                     <div class="company">Honors</div>
                     <p style="color: #ccc; margin-top: 10px;">Recognized for excellence in computational thinking and
                         problem solving.</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

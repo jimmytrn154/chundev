@@ -14,15 +14,14 @@ export type ProjectItem = {
   demoUrl?: string;
 };
 
-export type SkillItem = {
-  name: string;
-  percent: number;
+export type SkillGroup = {
+  title: string;
+  items: string[];
 };
 
-export type SkillCategory = {
-  icon: string;
-  title: string;
-  skills: SkillItem[];
+export type NewsItem = {
+  date: string;
+  text: string;
 };
 
 export type HonorItem = {
@@ -39,18 +38,52 @@ export type EducationItem = {
   description: string;
 };
 
-export const hero = {
-  name: "Chương Trần Anh",
-  avatar: "/chun.jpg",
-  typingTexts: [
-    "Data Science Student @ VinUniversity",
-    "Medical AI & Multimodal Learning Researcher",
-    "Full-Stack Developer",
-  ],
-  paragraph:
-    "I'm a Data Science student at VinUniversity researching multimodal learning, medical AI, and efficient deep learning — building systems that combine vision, language, and physiological signals, with a focus on real-world healthcare applications.",
-  ctaEmail: "jimmytrn154@gmail.com",
+export const profile = {
+  name: "Tran Anh Chuong",
+  vietnameseName: "Chương Trần Anh",
+  photo: "/chun.jpg",
+  title: "Undergraduate Researcher",
+  affiliation: "College of Engineering and Computer Science, VinUniversity",
+  location: "Hanoi, Vietnam",
 };
+
+export const about =
+  "I am a third-year Data Science undergraduate at VinUniversity, working as a part-time research assistant on multimodal medical AI. My current work integrates mammogram imaging with clinical text for molecular breast cancer subtype classification, alongside applied computer vision and full-stack engineering for research infrastructure.";
+
+export const researchInterests = {
+  keywords: [
+    "Multimodal Learning",
+    "Medical AI",
+    "Efficient Deep Learning",
+    "Generative & Agentic AI",
+    "Neural Data Science",
+  ],
+  statement:
+    "I am particularly interested in developing reliable and computationally efficient AI systems that integrate vision, language, and neural or physiological signals. My research approach emphasizes rigorous empirical evaluation through ablation studies, error analysis, and deployment-aware benchmarking, with a particular interest in translating multimodal and generative AI methods to healthcare and real-world applications.",
+};
+
+export const news: NewsItem[] = [
+  {
+    date: "Jul 2026",
+    text: "Selected as a Top 5 finalist in the Robotics & Physical AI track at Agentic AI Build Week 2026, organized by GenAI Fund.",
+  },
+  {
+    date: "Jun 2026",
+    text: "Joined Naiscorp Robotics as a Computer Vision Engineer Intern, working on real-time face analysis for robotic deployment.",
+  },
+  {
+    date: "May 2025",
+    text: "Joined the Molecular Breast Cancer Subtype Prediction group at VinUniversity as a research assistant.",
+  },
+  {
+    date: "Feb 2025",
+    text: "Began building the registration platform for DATATHON 2026, VinUniversity's first national Data Science & AI hackathon.",
+  },
+  {
+    date: "Aug 2024",
+    text: "Started as a research assistant and web developer on KALM4REC, a keyword-driven recommendation framework for cold-start users.",
+  },
+];
 
 export const experience: ExperienceItem[] = [
   {
@@ -141,49 +174,33 @@ export const projects: ProjectItem[] = [
     description:
       "Investigated adaptive early-exit strategies for ResNet-18 on CIFAR-10, achieving 87.69% accuracy with 49.54% fewer FLOPs using a reinforcement-learning exit controller.",
     tech: ["PyTorch", "ResNet-18", "Reinforcement Learning"],
+    codeUrl: "https://github.com/jimmytrn154/AI-Final-Project",
   },
 ];
 
-export const skillCategories: SkillCategory[] = [
+export const skillGroups: SkillGroup[] = [
   {
-    icon: "fa-code",
     title: "Programming",
-    skills: [
-      { name: "Python", percent: 90 },
-      { name: "JavaScript", percent: 80 },
-      { name: "Java", percent: 70 },
-      { name: "C / C++", percent: 70 },
-      { name: "SQL", percent: 80 },
-    ],
+    items: ["Python", "JavaScript", "Java", "C / C++", "SQL"],
   },
   {
-    icon: "fa-brain",
     title: "AI & Data Science",
-    skills: [
-      { name: "PyTorch", percent: 75 },
-      { name: "OpenCV", percent: 80 },
-      { name: "Pandas", percent: 80 },
-      { name: "Langchain", percent: 70 },
+    items: [
+      "PyTorch",
+      "OpenCV",
+      "ONNX Runtime",
+      "Pandas",
+      "LangChain",
+      "scikit-learn",
     ],
   },
   {
-    icon: "fa-desktop",
-    title: "Front-End",
-    skills: [
-      { name: "ReactJS", percent: 85 },
-      { name: "Tailwind", percent: 85 },
-      { name: "HTML/CSS", percent: 90 },
-    ],
+    title: "Web & Systems",
+    items: ["React", "Next.js", "Node.js", "Flask / FastAPI", "Tailwind CSS"],
   },
   {
-    icon: "fa-server",
-    title: "Back-End & Infra",
-    skills: [
-      { name: "Flask/FastAPI", percent: 80 },
-      { name: "Node.js", percent: 80 },
-      { name: "Git / GitHub", percent: 90 },
-      { name: "Docker", percent: 50 },
-    ],
+    title: "Infrastructure",
+    items: ["Google Cloud Platform", "Docker", "Git / GitHub", "MySQL"],
   },
 ];
 
@@ -201,7 +218,7 @@ export const education: EducationItem[] = [
   {
     date: "2024 - 2028",
     degree: "B.S. Data Science",
-    school: "VinUniversity",
+    school: "College of Engineering and Computer Science, VinUniversity",
     description:
       "Major GPA: 3.61/4.00. Coursework: Data Mining & Big Data Analytics, Linear Algebra, Data Science Programming, Probability & Statistics.",
   },

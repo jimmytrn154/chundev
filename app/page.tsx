@@ -1,7 +1,7 @@
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import ParticleBackground from "@/components/ParticleBackground";
-import ScrollAnimations from "@/components/ScrollAnimations";
+import Sidebar from "@/components/Sidebar";
+import About from "@/components/About";
+import ResearchInterests from "@/components/ResearchInterests";
+import News from "@/components/News";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
@@ -11,17 +11,19 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
-      <ParticleBackground />
-      <ScrollAnimations />
-      <Nav />
-      <Hero />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Honors />
-      <Education />
-      <Footer />
-    </>
+    <div className="page">
+      <Sidebar />
+      <main>
+        <About />
+        <ResearchInterests />
+        <News />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Honors />
+        <Education />
+        <Footer />
+      </main>
+    </div>
   );
 }

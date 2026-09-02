@@ -1,23 +1,24 @@
 import type { Metadata } from "next";
-import { Outfit, Space_Grotesk } from "next/font/google";
+import { Source_Serif_4, Inter } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
-  variable: "--font-outfit",
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-space-grotesk",
+  weight: ["400", "500"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-  title: "Chương Trần Anh | Data Science & AI",
+  title: "Tran Anh Chuong",
   description:
-    "Portfolio of Chương Trần Anh — Data Science student at VinUniversity researching multimodal learning, medical AI, and full-stack systems.",
+    "Tran Anh Chuong — undergraduate researcher in Data Science at VinUniversity, working on multimodal learning, medical AI, and efficient deep learning.",
 };
 
 export default function RootLayout({
@@ -25,13 +26,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-      </head>
-      <body className={`${outfit.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${sourceSerif.variable} ${inter.variable}`}>
         {children}
       </body>
     </html>
